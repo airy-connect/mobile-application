@@ -44,7 +44,7 @@ class _DevicePageState extends State<DevicePage> {
       ),
       body: new ListView(
         children: _plugins.map((plugin) {
-          return plugin.buildListTile(context);
+          return plugin.buildListTile(context, widget.device);
         }).toList(),
       ),
     );

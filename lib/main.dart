@@ -7,13 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
+  // TODO: https://github.com/flutter/flutter/issues/13736
+  MaterialPageRoute.debugEnableFadingRoutes = true;
+
   runApp(
     new MaterialApp(
+      title: 'Airy Connect',
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: new Scaffold(
         body: new Center(
           child: new CircularProgressIndicator(),
         ),
       ),
+      debugShowCheckedModeBanner: false,
     ),
   );
 

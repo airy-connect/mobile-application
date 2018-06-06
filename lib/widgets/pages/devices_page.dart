@@ -108,7 +108,18 @@ class _DevicesPageState extends State<DevicesPage> {
           },
         ),
         subtitle: new Text(device.host),
-        onTap: () {
+        onTap: () async {
+          if (!await device.isOnline) {
+            return showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('Ошибка подключения'),
+                  content: Text('Невозможно подключиться к устройству.'),
+                );
+              },
+            );
+          }
           final route = new MaterialPageRoute(
             builder: (BuildContext context) => new DevicePage(device),
           );

@@ -7,10 +7,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: https://github.com/flutter/flutter/issues/13736
-    MaterialPageRoute.debugEnableFadingRoutes = true;
     return new MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Airy Connect',
       theme: new ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,

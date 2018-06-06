@@ -63,7 +63,6 @@ class Device {
   }
 
   Future<String> get _authorizationStatus async {
-    final httpClient = _httpClient;
     final url = Uri.parse('https://$host:8420/getAuthorizationStatus');
     final request = await httpClient.getUrl(url);
     final response = await request.close();
@@ -72,7 +71,7 @@ class Device {
     return decodedJson['authorizationStatus'];
   }
 
-  HttpClient get _httpClient {
+  HttpClient get httpClient {
     final clientCertificate = App.clientCertificate;
     final securityContext = new SecurityContext();
     securityContext.useCertificateChainBytes(

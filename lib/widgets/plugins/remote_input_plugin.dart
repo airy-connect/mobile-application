@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:airy_connect/models/device.dart';
 import 'package:airy_connect/plugin.dart';
+import 'package:flutter/material.dart';
 
 class RemoteInputPlugin extends Plugin {
-  ListTile buildListTile(BuildContext context) {
+  ListTile buildListTile(BuildContext context, Device device) {
     return new ListTile(
       leading: new Icon(Icons.keyboard),
       title: const Text("Удаленный ввод"),
