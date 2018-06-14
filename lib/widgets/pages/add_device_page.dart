@@ -202,7 +202,7 @@ class _AddDevicePageState extends State<AddDevicePage> {
           final route = new MaterialPageRoute(builder: (context) {
             return new DevicesPage();
           });
-          Navigator.of(context).pushAndRemoveUntil(route, (_) => true);
+          Navigator.of(context).pushAndRemoveUntil(route, (_) => false);
 
           return;
         }
