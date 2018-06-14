@@ -7,7 +7,28 @@ class RemoteShutdownPlugin extends Plugin {
     return new ListTile(
       leading: new Icon(Icons.power_settings_new),
       title: const Text("Удаленное выключение"),
-      onTap: () {},
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return new AlertDialog(
+              title: Text('Вы уверены, что хотите выключить устройство?'),
+              actions: <Widget>[
+                MaterialButton(
+                  child: Text('Нет'),
+                  onPressed: () {},
+                  textColor: Colors.red,
+                ),
+                MaterialButton(
+                  child: Text('Да'),
+                  onPressed: () {},
+                  textColor: Colors.green,
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }
