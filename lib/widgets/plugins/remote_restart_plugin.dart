@@ -7,7 +7,28 @@ class RemoteRestartPlugin extends Plugin {
     return new ListTile(
       leading: new Icon(Icons.refresh),
       title: const Text("Удаленная перезагрузка"),
-      onTap: () {},
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return new AlertDialog(
+              title: Text('Вы уверены, что хотите перезагрузить устройство?'),
+              actions: <Widget>[
+                MaterialButton(
+                  child: Text('Нет'),
+                  onPressed: () {},
+                  textColor: Colors.red,
+                ),
+                MaterialButton(
+                  child: Text('Да'),
+                  onPressed: () {},
+                  textColor: Colors.green,
+                ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }
