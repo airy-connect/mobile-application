@@ -103,7 +103,6 @@ class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
                     },
                   ),
                 ),
-                Hi
               ],
             ),
           ),
