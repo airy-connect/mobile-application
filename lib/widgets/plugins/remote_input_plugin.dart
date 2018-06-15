@@ -29,6 +29,9 @@ class _RemoteInputPluginPage extends StatefulWidget {
 }
 
 class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
+  final _textFieldFocusNode = new FocusNode();
+  final _textFieldController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final text = '- Передвигайте палец по экрану для передвижения курсора.\n\n'
@@ -42,6 +45,7 @@ class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
           new IconButton(
             icon: new Icon(Icons.keyboard),
             onPressed: () {
+              print(_textFieldFocusNode.hasFocus);
               if (_textFieldFocusNode.hasFocus) {
                 FocusScope.of(context).requestFocus(new FocusNode());
               } else {
@@ -78,11 +82,6 @@ class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
             },
           ),
         },
-//        onTap: _onTap,
-//        onDoubleTap: _onDoubleTap,
-//        onPanStart: _onPanStart,
-//        onPanUpdate: _onPanUpdate,
-//        onPanEnd: _onPanEnd,
         behavior: HitTestBehavior.opaque,
         child: Container(
           padding: EdgeInsets.all(16.0),
@@ -99,10 +98,12 @@ class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
                     controller: _textFieldController,
                     autocorrect: false,
                     onChanged: (value) {
+                      _typeString(value);
                       _textFieldController.clear();
                     },
                   ),
                 ),
+                Hi
               ],
             ),
           ),
@@ -110,9 +111,6 @@ class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
       ),
     );
   }
-
-  final _textFieldFocusNode = new FocusNode();
-  final _textFieldController = new TextEditingController();
 
   void _onTap() async {
     final device = widget.device;
@@ -168,5 +166,17 @@ class _RemoteInputPluginPageState extends State<_RemoteInputPluginPage> {
 
   void _onDragEnd(DragEndDetails details) {
     _offset = new Offset(0.0, 0.0);
+  }
+
+  void _typeString(String string) async {
+    final device = widget.device;
+    final host = device.host;
+    final url = Uri.parse('https://$host:8420/'
+        'remoteInputPlugin/'
+        'typeString?'
+        'string=$string');
+    final httpClient = widget.device.httpClient;
+    final request = await httpClient.getUrl(url);
+    await request.close();
   }
 }
