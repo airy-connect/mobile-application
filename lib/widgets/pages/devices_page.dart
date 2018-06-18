@@ -109,7 +109,24 @@ class _DevicesPageState extends State<DevicesPage> {
         ),
         subtitle: new Text(device.host),
         onTap: () async {
-          if (!await device.isOnline) {
+          try {
+            final authorizationStatus = await device.getAuthorizationStatus();
+            if (authorizationStatus != 'AUTHORIZED') {
+              await device.delete();
+              setState(() {});
+              return showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Ошибка подключения'),
+                    content: Text(
+                      'Удаленное устройство не разрешило подключение.',
+                    ),
+                  );
+                },
+              );
+            }
+          } catch (_) {
             return showDialog(
               context: context,
               builder: (context) {

@@ -56,13 +56,13 @@ class Device {
 
   Future<bool> get isOnline async {
     try {
-      await _authorizationStatus;
+      await getAuthorizationStatus();
       return true;
     } catch (_) {}
     return false;
   }
 
-  Future<String> get _authorizationStatus async {
+  Future<String> getAuthorizationStatus() async {
     final url = Uri.parse('https://$host:8420/getAuthorizationStatus');
     final request = await httpClient.getUrl(url);
     final response = await request.close();
