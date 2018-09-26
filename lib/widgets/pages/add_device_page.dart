@@ -157,9 +157,9 @@ class _AddDevicePageState extends State<AddDevicePage> {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
-            return new AlertDialog(
-              title: new Text('Сравните отпечатки'),
-              content: new Text(
+            return AlertDialog(
+              title: Text('Сравните отпечатки'),
+              content: Text(
                 'Отпечаток сертификата вашего устройства:\n'
                     '${App.clientCertificate.fingerprint}\n\n'
                     'Отпечаток сертификата удаленного устройства:\n'

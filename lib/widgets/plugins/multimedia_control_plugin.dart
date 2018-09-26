@@ -132,11 +132,13 @@ class _MultimediaControlPluginPageState
     await request.close();
   }
 
+  String get _pluginPath {
+    return 'https://${widget.device.host}:8420/multimediaControlPlugin';
+  }
+
   _next() async {
-    final device = widget.device;
-    final host = device.host;
-    final url = Uri.parse('https://$host:8420/multimediaControlPlugin/next');
     final httpClient = widget.device.httpClient;
+    final url = Uri.parse('$_pluginPath/next');
     final request = await httpClient.getUrl(url);
     await request.close();
   }

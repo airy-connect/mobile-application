@@ -33,13 +33,13 @@ class _ScreenshotPluginPage extends StatefulWidget {
 }
 
 class _ScreenshotPluginPageState extends State<_ScreenshotPluginPage> {
+  String get _pluginPath {
+    final host = widget.device.host;
+    return 'https://$host:8420/screenshotPlugin/';
+  }
+
   Future<Uint8List> _getScreenshot() async {
-    final device = widget.device;
-    final host = device.host;
-    final url = Uri.parse('https://$host:8420/'
-        'screenshotPlugin/'
-        'get');
-    print(url);
+    final url = Uri.parse('$_pluginPath/get');
     final httpClient = widget.device.httpClient;
     final request = await httpClient.getUrl(url);
     final response = await request.close();
